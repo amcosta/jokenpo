@@ -2,18 +2,14 @@ package dev.amcosta.choice;
 
 import dev.amcosta.exception.DrawException;
 
-public class Scissor implements IChoice {
+public class Scissor extends Choice {
     @Override
-    public Choice getChoice() {
-        return Choice.SCISSOR;
+    public ChoiceEnum getChoice() {
+        return ChoiceEnum.SCISSOR;
     }
 
     @Override
-    public Boolean compare(IChoice choice) {
-        if (choice.getChoice().equals(Choice.SCISSOR)) {
-            throw new DrawException();
-        }
-
-        return choice.getChoice().equals(Choice.PAPER);
+    ChoiceEnum getWinsFrom() {
+        return ChoiceEnum.PAPER;
     }
 }
