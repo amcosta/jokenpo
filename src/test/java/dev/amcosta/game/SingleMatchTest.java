@@ -20,9 +20,9 @@ public class SingleMatchTest {
         Player p1 = new Player("p1", new Scissor());
         Player p2 = new Player("p2", new Paper());
         SingleMatch game = new SingleMatch(p1, p2);
-        game.execute();
+        Player winner = game.play();
 
-        assertEquals(p1.getName(), game.getWinner().getName());
+        assertEquals(p1.getName(), winner.getName());
     }
 
     @Test
@@ -32,6 +32,6 @@ public class SingleMatchTest {
         Player p1 = new Player("p1", new Scissor());
         Player p2 = new Player("p2", new Scissor());
         SingleMatch game = new SingleMatch(p1, p2);
-        game.execute();
+        game.play();
     }
 }

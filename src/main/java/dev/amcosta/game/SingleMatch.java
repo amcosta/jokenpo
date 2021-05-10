@@ -1,8 +1,9 @@
 package dev.amcosta.game;
 
 import dev.amcosta.Player;
+import dev.amcosta.exception.DrawException;
 
-public class SingleMatch {
+public class SingleMatch implements IGame {
     private final Player player1;
     private final Player player2;
     private Player winner;
@@ -12,11 +13,8 @@ public class SingleMatch {
         this.player2 = player2;
     }
 
-    public void execute() {
-        winner = player1.getChoice().compare(player2.getChoice()) ? player1 : player2;
-    }
-
-    public Player getWinner() {
-        return winner;
+    @Override
+    public Player play() throws DrawException {
+        return player1.getChoice().compare(player2.getChoice()) ? player1 : player2;
     }
 }

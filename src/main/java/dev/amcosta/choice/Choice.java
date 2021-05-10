@@ -6,7 +6,7 @@ import java.util.List;
 
 public abstract class Choice implements IChoice {
     @Override
-    public Boolean compare(IChoice choice) {
+    public Boolean compare(IChoice choice) throws DrawException {
         if (choice.getChoice().equals(this.getChoice())) {
             throw new DrawException();
         }

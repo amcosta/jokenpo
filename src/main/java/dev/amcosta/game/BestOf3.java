@@ -5,7 +5,7 @@ import dev.amcosta.exception.DrawException;
 
 import java.util.HashMap;
 
-public class BestOf3 {
+public class BestOf3 implements IGame {
 
     private static final int MATCHES = 3;
 
@@ -22,25 +22,23 @@ public class BestOf3 {
         this.score.put(this.player2, 0);
     }
 
-    public void play() {
+    @Override
+    public Player play() throws DrawException {
         for (int round = 1; round <= MATCHES; round++) {
             SingleMatch match = new SingleMatch(this.player1, this.player2);
-            match.execute();
-            Player winner = match.getWinner();
-
-            Integer currentScore = this.score.get(winner);
-            currentScore++;
-            this.score.replace(winner, currentScore);
+            try {
+                Player winner = match.play();
+                Integer currentScore = this.score.get(winner);
+                currentScore++;
+                this.score.replace(winner, currentScore);
+            } catch (DrawException ignored) {
+            }
         }
 
         if (this.score.get(this.player1).equals(this.score.get(this.player2))) {
             throw new DrawException();
         }
 
-        this.winner = this.score.get(this.player1) > this.score.get(this.player2) ? this.player1 : this.player2;
-    }
-
-    public Player getWinner() {
-        return this.winner;
+        return this.score.get(this.player1) > this.score.get(this.player2) ? this.player1 : this.player2;
     }
 }
